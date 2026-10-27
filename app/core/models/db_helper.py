@@ -9,7 +9,6 @@ from sqlalchemy.ext.asyncio import (
 
 from core.config import settings
 
-
 class DatabaseHelper:
     def __init__(
         self, 
@@ -41,10 +40,10 @@ class DatabaseHelper:
             yield session
 
 
-dg_helper = DatabaseHelper(
+db_helper = DatabaseHelper(
     url=str(settings.db.url),
-    echo=settings.dg.echo,
+    echo=settings.db.echo,
     echo_pool=settings.db.echo_pool,
-    pool_size=settings.dg.pool_size,
+    pool_size=settings.db.pool_size,
     max_overflow=settings.db.max_overflow
 )
