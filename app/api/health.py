@@ -8,25 +8,24 @@ from core.models import db_helper
 
 router = APIRouter(prefix="/health", tags=["Health"])
 
-
 @router.get("/live")
 async def liveness():
     return {"status": "ok"}
 
+
 @router.get("/ready")
 async def readiness(
-    session: AsyncSession = Depends(db_helper.session_getter)
+    session: AsyncSession = Depends(db_helper.session_getter),
 ):
     try:
         await session.execute(text("SELECT 1"))
-
-    except SQLAlchemyError:
+    except SQLAlchemyError as exc:
         raise HTTPException(
             status_code=503,
-            detail="Database is unavailable"
-        )
+            detail="Database is unavailable",
+        ) from exc
 
     return {
-        "status" : "ok",
-        "database" : "available",
+        "status": "ok",
+        "database": "available",
     }
