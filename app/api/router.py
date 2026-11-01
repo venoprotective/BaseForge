@@ -1,8 +1,13 @@
 from fastapi import APIRouter
 
+from api.health import router as health_router
+
+
 router = APIRouter()
+
+router.include_router(health_router)
 
 
 @router.get("/")
-def test():
-    return {"message" : "ok"}
+async def root():
+    return {"message": "ok"}
