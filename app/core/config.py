@@ -7,9 +7,9 @@ class RunConfig(BaseModel):
     host : str = "0.0.0.0"
     port : int = 8000
 
-class ApiPrefix(BaseModel):
-    prefix : str = "/app/api"
-
+class ApiConfig(BaseModel):
+    prefix: str = "/api/v1"
+    
 class DatabaseConfig(BaseModel):
     url : PostgresDsn
     echo : bool = False
