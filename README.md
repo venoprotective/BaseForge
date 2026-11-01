@@ -1,4 +1,4 @@
-# Project For Every Projects
+# BaseForge
 
 Универсальная стартовая заготовка для небольших backend, full-stack и ML-проектов на FastAPI.
 
