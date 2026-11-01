@@ -14,19 +14,20 @@ class DatabaseConfig(BaseModel):
     url : PostgresDsn
     echo : bool = False
     echo_pool : bool = False
-    pool_size : int = 50
+    pool_size : int = 5
     max_overflow : int = 10
+
     
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=(".env.template", ".env"),
-        case_sesitive=False,
+        case_sensitive=False,
         env_nested_delimiter="__",
         env_prefix="APP_CONFIG__"
     )
 
     run : RunConfig = RunConfig()
-    api : ApiPrefix = ApiPrefix()
+    api : ApiConfig = ApiConfig()
     db  : DatabaseConfig
 
 settings = Settings()

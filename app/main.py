@@ -12,15 +12,13 @@ from api.router import router
 @asynccontextmanager
 async def lifespan(app : FastAPI):
     yield 
-
-    print("dispose engine")
-
     await db_helper.dispose() 
 
 
 main_app = FastAPI(
     lifespan=lifespan
     )
+
 main_app.include_router(
     router,
     prefix=settings.api.prefix
